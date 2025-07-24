@@ -27,7 +27,6 @@ const app = express();
 // For development, '*' is fine. For production, restrict to your frontend's domain.
 //app.use(cors());
 // app.use(cors());
-const cors = require("cors");
 
 const allowedOrigins = [
   "https://688229c492dd1078ce8c778d--amazonclonev3.netlify.app",
