@@ -1,4 +1,3 @@
-<!-- 25june -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -113,7 +112,7 @@
                 </tbody>
             </table>
             <div class="text-end mt-3">
-                <h4>Subtotal: <span id="cartSubtotal">$0.00</span></h4>
+                <h4>Subtotal: <span id="cartSubtotal">₹0.00</span></h4>
                 <button id="checkoutBtn" class="btn btn-success btn-lg rounded">Proceed to Checkout</button>
             </div>
         </div>
@@ -155,7 +154,7 @@
 
     <script>
         // Backend API base URL
-        const API_BASE_URL = 'https://amazon-clone-fullstack.onrender.com/api'; // Adjust if your backend runs on a different port/host
+        const API_BASE_URL = 'https://dove-national-strictly.ngrok-free.app'; // Adjust if your backend runs on a different port/host
 
         // DOM elements
         const cartContainerEl = document.getElementById("cartContainer");
@@ -200,7 +199,7 @@
 
             try {
                 // IMPORTANT FIX: Pass user_id as a query parameter for GET request
-                const response = await fetch(`${API_BASE_URL}/cart?user_id=${currentUser.id}`, {
+                const response = await fetch(`${API_BASE_URL}/api/cart?user_id=${currentUser.id}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -254,12 +253,12 @@
                             <span>${item.product_title}</span>
                         </div>
                     </td>
-                    <td>$${parseFloat(item.product_price).toFixed(2)}</td>
+                    <td>₹${parseFloat(item.product_price).toFixed(2)}</td>
                     <td>
                         <input type="number" class="form-control form-control-sm quantity-input rounded"
                                data-cart-item-id="${item.id}" value="${item.quantity}" min="1" style="width: 70px;">
                     </td>
-                    <td>$${itemTotal.toFixed(2)}</td>
+                    <td>₹${itemTotal.toFixed(2)}</td>
                     <td>
                         <button class="btn btn-danger btn-sm remove-item-btn rounded" data-cart-item-id="${item.id}">Remove</button>
                     </td>
@@ -267,7 +266,7 @@
                 cartTableBody.appendChild(row);
             });
 
-            cartSubtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+            cartSubtotalEl.textContent = `₹${subtotal.toFixed(2)}`;
             cartContainerEl.style.display = 'block';
             emptyMessageEl.style.display = 'none';
             updateCartCount(cartItems.length); // Update the navbar badge with actual fetched count
@@ -314,7 +313,7 @@
         // --- Send Quantity Update to Backend ---
         async function updateItemQuantity(cartItemId, newQuantity) {
             try {
-                const response = await fetch(`${API_BASE_URL}/cart/update/${cartItemId}`, {
+                const response = await fetch(`${API_BASE_URL}/api/cart/update/${cartItemId}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -345,7 +344,7 @@
         async function removeItemFromCart(cartItemId) {
             try {
                 // IMPORTANT: Send currentUser.id as query parameter for DELETE request
-                const response = await fetch(`${API_BASE_URL}/cart/remove/${cartItemId}?user_id=${currentUser.id}`, {
+                const response = await fetch(`${API_BASE_URL}/api/cart/remove/${cartItemId}?user_id=${currentUser.id}`, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json',
@@ -376,7 +375,7 @@
                 // Fetch the actual cart length from backend for the current user
                 try {
                     // IMPORTANT: Pass user_id as query parameter for GET request
-                    const response = await fetch(`${API_BASE_URL}/cart?user_id=${currentUser.id}`, {
+                    const response = await fetch(`${API_BASE_URL}/api/cart?user_id=${currentUser.id}`, {
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json',

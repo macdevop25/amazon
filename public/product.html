@@ -108,7 +108,7 @@
 
     <script>
         // Backend API base URL
-        const API_BASE_URL = 'https://amazon-clone-fullstack.onrender.com/api'; // Adjust if your backend runs on a different port/host
+        const API_BASE_URL = 'https://dove-national-strictly.ngrok-free.app'; // Adjust if your backend runs on a different port/host
 
         // DOM elements
         const productDetailsEl = document.getElementById("productDetails");
@@ -151,7 +151,7 @@
                 </div>
                 <div class="col-md-6">
                     <h2 class="fw-bold">${product.title}</h2>
-                    <h4 class="text-danger mb-3">${typeof product.price === 'number' ? `$${product.price.toFixed(2)}` : product.price}</h4>
+                    <h4 class="text-danger mb-3">₹${typeof product.price === 'number' ? `${product.price.toFixed(2)}` : product.price}</h4>
                     <p class="text-muted">${product.description || 'No description available for this product.'}</p>
                     <div class="d-flex align-items-center mt-4">
                         <button id="addToCartBtn" class="btn btn-primary btn-lg rounded me-2">Add to Cart</button>
@@ -190,7 +190,7 @@
                 };
 
                 try {
-                    const response = await fetch(`${API_BASE_URL}/cart/add`, {
+                    const response = await fetch(`${API_BASE_URL}/api/cart/add`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -225,7 +225,7 @@
                 try {
                     // Fetch the user's cart from the backend to get the latest count
                     // CRITICAL: Pass user_id as a query parameter for GET request
-                    const response = await fetch(`${API_BASE_URL}/cart?user_id=${currentUser.id}`, {
+                    const response = await fetch(`${API_BASE_URL}/api/cart?user_id=${currentUser.id}`, {
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json',
@@ -261,7 +261,7 @@
             if (currentUser && currentUser.id) {
                 // Fetch the actual cart length from backend for the current user
                 try {
-                    const response = await fetch(`${API_BASE_URL}/cart?user_id=${currentUser.id}`, {
+                    const response = await fetch(`${API_BASE_URL}/api/cart?user_id=${currentUser.id}`, {
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json',

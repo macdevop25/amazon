@@ -1,4 +1,3 @@
-<!-- 25june -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -213,7 +212,7 @@
             noProductsMessageEl.style.display = 'none';
 
             try {
-                const response = await fetch(`${API_BASE_URL}/products`);
+                const response = await fetch(`${API_BASE_URL}/api/products`);
                 const data = await response.json();
 
                 if (response.ok && data.products) {
@@ -261,7 +260,7 @@
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">${product.title}</h5>
                             <p class="card-text text-muted text-truncate">${product.description || 'No description.'}</p>
-                            <p class="card-text fw-bold text-danger">$${parseFloat(product.price).toFixed(2)}</p>
+                            <p class="card-text fw-bold text-danger">₹${parseFloat(product.price).toFixed(2)}</p>
                             <div class="mt-auto d-flex justify-content-between">
                                 <button class="btn btn-primary btn-sm rounded add-to-cart-btn" data-product-id="${product.id}">Add to Cart</button>
                                 <button class="btn btn-outline-secondary btn-sm rounded view-detail-btn" data-product-id="${product.id}">
@@ -317,7 +316,7 @@
                     };
 
                     try {
-                        const response = await fetch(`${API_BASE_URL}/cart/add`, {
+                        const response = await fetch(`${API_BASE_URL}/api/cart/add`, {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -378,7 +377,7 @@
             if (currentUser && currentUser.id) {
                 // Fetch the actual cart length from backend for the current user
                 try {
-                    const response = await fetch(`${API_BASE_URL}/cart`, {
+                    const response = await fetch(`${API_BASE_URL}/api/cart`, {
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json',
@@ -444,7 +443,7 @@
             let cartLength = 0;
             if (currentUser && currentUser.id) {
                 try {
-                    const response = await fetch(`${API_BASE_URL}/cart?user_id=${currentUser.id}`, { // Pass user_id for GET
+                    const response = await fetch(`${API_BASE_URL}/api/cart?user_id=${currentUser.id}`, { // Pass user_id for GET
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json',
