@@ -27,10 +27,11 @@ const app = express();
 // For development, '*' is fine. For production, restrict to your frontend's domain.
 //app.use(cors());
 // app.use(cors());
+const cors = require("cors");
+
 const allowedOrigins = [
-  "https://dove-national-strictly.ngrok-free.app", // Your current ngrok frontend
-  "http://localhost:3000", // Optional for local dev
-  "https://688229c492dd1078ce8c778d--amazonclonev3.netlify.app/" // (future production frontend)
+  "https://688229c492dd1078ce8c778d--amazonclonev3.netlify.app",
+  "https://dove-national-strictly.ngrok-free.app",
 ];
 
 app.use(cors({
@@ -41,8 +42,13 @@ app.use(cors({
       callback(new Error("Not allowed by CORS"));
     }
   },
-  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  credentials: true
 }));
+
+// Also handle preflight OPTIONS
+app.options('*', cors());
+
 
 // Parse incoming request bodies in JSON format
 app.use(bodyParser.json());
