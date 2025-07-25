@@ -48,8 +48,6 @@ const app = express();
 // // Also handle preflight OPTIONS
 // app.options('*', cors());
 
-const cors = require("cors");
-
 const allowedOrigins = [
   "https://amazonclonev3.netlify.app",
 ];
