@@ -96,7 +96,7 @@ const cartRoutes = require('./routes/cart');
 // --- Route Mounting ---
 // Mount the products router under the /api path.
 // If productsRouter handles '/products', the full path will be /api/products.
-app.use("/api", productsRouter);
+app.use("/api/products", productsRouter);
 // Mount the cart router under the /api/cart path.
 app.use('/api/cart', cartRoutes);
 

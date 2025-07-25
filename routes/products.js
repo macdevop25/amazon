@@ -4,7 +4,7 @@ const pool = require('../config/db'); // Import the database connection pool
 
 // --- Route to get all products (GET /api/products) ---
 // This route will fetch all products from your PostgreSQL database.
-router.get('/', async (req, res) => { // Route path is '/products' within this router
+router.get('/products', async (req, res) => { // Route path is '/products' within this router
     console.log('Attempting to fetch all products from the database...'); // Log when the route is hit
     try {
         // SQL query to select all products from the 'products' table.
