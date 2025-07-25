@@ -47,13 +47,28 @@ const app = express();
 
 // // Also handle preflight OPTIONS
 // app.options('*', cors());
-const cors = require('cors');
+
+const cors = require("cors");
+
+const allowedOrigins = [
+  "https://amazonclonev3.netlify.app",
+];
 
 app.use(cors({
-  origin: 'https://amazonclonev3.netlify.app',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   credentials: true,
+  allowedHeaders: ["Content-Type", "Authorization"],
 }));
+
+// Explicitly handle preflight OPTIONS request
+app.options("*", cors());
 
 
 // Parse incoming request bodies in JSON format
