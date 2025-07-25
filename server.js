@@ -29,7 +29,7 @@ const app = express();
 // app.use(cors());
 
 const allowedOrigins = [
-  "https://688229c492dd1078ce8c778d--amazonclonev3.netlify.app",
+  "https://amazonclonev3.netlify.app",
   "https://dove-national-strictly.ngrok-free.app",
 ];
 

@@ -1,0 +1,21 @@
+{
+    "workbench.externalBrowser": "chrome",
+    "liveServer.settings.AdvanceCustomBrowserCmdLine": ""
+}
+{
+  // Force all auth (e.g., GitHub) to open in browser
+  "oauth.useExternalBrowser": true,
+  "github.gitAuthentication.useExternalBrowser": true,
+
+  // All links should open in the default browser
+  "window.openExternalLinksInBrowser": true,
+
+  // Markdown links open externally (not inside VS Code)
+  "markdown.preview.openLinksToExternal": true,
+
+  // Live Server: open in system browser
+  "liveServer.settings.CustomBrowser": "",
+
+  // Optional: fallback for Linux if xdg-open fails
+  "liveServer.settings.AdvanceCustomBrowserCmdLine": "xdg-open"
+}
