@@ -47,26 +47,28 @@ const app = express();
 
 // // Also handle preflight OPTIONS
 // app.options('*', cors());
-
 const allowedOrigins = [
   "https://amazonclonev3.netlify.app",
+  "https://dove-national-strictly.ngrok-free.app" // your current ngrok URL
 ];
 
-app.use(cors({
+const corsOptions = {
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
+      console.error("Blocked by CORS:", origin);
       callback(new Error("Not allowed by CORS"));
     }
   },
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   credentials: true,
   allowedHeaders: ["Content-Type", "Authorization"],
-}));
+};
 
-// Explicitly handle preflight OPTIONS request
-app.options("*", cors());
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); // Handle preflight OPTIONS
+
 
 
 // Parse incoming request bodies in JSON format
