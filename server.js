@@ -28,25 +28,32 @@ const app = express();
 //app.use(cors());
 // app.use(cors());
 
-const allowedOrigins = [
-  "https://amazonclonev3.netlify.app",
-  "https://dove-national-strictly.ngrok-free.app",
-];
+// const allowedOrigins = [
+//   "https://amazonclonev3.netlify.app",
+//   "https://dove-national-strictly.ngrok-free.app",
+// ];
+
+// app.use(cors({
+//   origin: function (origin, callback) {
+//     if (!origin || allowedOrigins.includes(origin)) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Not allowed by CORS"));
+//     }
+//   },
+//   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+//   credentials: true
+// }));
+
+// // Also handle preflight OPTIONS
+// app.options('*', cors());
+const cors = require('cors');
 
 app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  credentials: true
+  origin: 'https://amazonclonev3.netlify.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
 }));
-
-// Also handle preflight OPTIONS
-app.options('*', cors());
 
 
 // Parse incoming request bodies in JSON format
